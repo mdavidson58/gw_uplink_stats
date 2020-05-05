@@ -1,7 +1,7 @@
 descriptor-schema-version: "2.2"
 info:
-  name: GW Connection Service-0.8.7
-  version: 0.8.7
+  name: GW Connwction Service-0.8.8
+  version: 0.8.8
 app:
   cpuarch: x86_64
   env:

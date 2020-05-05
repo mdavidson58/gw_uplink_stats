@@ -27,6 +27,9 @@ type Cellular_data struct {
 	Roaming     string     `json:",omitempty"`
 	TXbytes     string     `json:",omitempty"`
 	RXbytes     string     `json:",omitempty"`
+	CellID		string	   `json:",omitempty"`
+	TAC			string	   `json:",omitempty"`
+	PCID		string	   `json:",omitempty"`
 }
 
 type Cell_dict_data struct {
@@ -70,6 +73,9 @@ func Cell_all(dt string) (*Cellular_data){
 	var Roaming string
 	var TXbytes string
 	var RXbytes string
+	var CellID	string
+	var TAC		string
+	var PCID	string
 
 	var str = dt
 
@@ -129,6 +135,13 @@ func Cell_all(dt string) (*Cellular_data){
 
 	RXbytes = cell_data_find(str, `bytes,\s+Received\s+=\s+(\S+)`)
 
+	CellID = cell_data_find(str, `Cell\s+ID\s+=\s(\S+)`)
+	
+	TAC = cell_data_find(str, `Tracking\sArea\sCode\s\(TAC\)\s=\s(\S+)`)
+	
+	PCID = cell_data_find(str, `Physical\sCell\sId\s=\s(\S+)`)
+	
+	
 	c_data := Cellular_data{}
 
 	// Save data to struct
@@ -150,6 +163,9 @@ func Cell_all(dt string) (*Cellular_data){
 	c_data.Roaming = Roaming
 	c_data.TXbytes = TXbytes
 	c_data.RXbytes = RXbytes
+	c_data.CellID = CellID
+	c_data.TAC = TAC
+	c_data.PCID = PCID
 
 	//fmt.Println(c_data)
 
